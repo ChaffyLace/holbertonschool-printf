@@ -38,7 +38,7 @@ int _printf(const char *format, ...)
 		{
 
 		}
-		elese if(format[i] == '%')
+		else if(format[i] == '%')
 		{
 		
 		}
