@@ -13,45 +13,53 @@ int _printf(const char *format, ...)
     int count = 0;
 
     if (format == NULL)
-	return(0)
+        return (0);
 
-    /* 2. Initialiser va_list */
     va_start(args, format);
 
-    /* 3. Parcourir format */
     while (format[i] != '\0')
     {
-        if(format[i] != '%')
-	{
-		write(1, &format[i], 1);
-        	count++;
-	}
+        if (format[i] != '%')
+        {
+            write(1, &format[i], 1);
+            count++;
+        }
         else
-	{
-		i++;
+        {
+            i++;
 
-		if (format[i] == 'c')
-		}
+            if (format[i] == 'c')
+            {
+                char c = va_arg(args, int);
+                write(1, &c, 1);
+                count++;
+            }
+            else if (format[i] == 's')
+            {
+                char *s = va_arg(args, char *);
+                int j = 0;
 
-		}
-		else if (format[i] == 's')
-		{
+                if (s == NULL)
+                    s = "(null)";
 
-		}
-		else if(format[i] == '%')
-		{
-		
-		}
-
-
-        /* 6. Mettre à jour count */
+                while (s[j] != '\0')
+                {
+                    write(1, &s[j], 1);
+                    j++;
+                    count++;
+                }
+            }
+            else if (format[i] == '%')
+            {
+                write(1, "%", 1);
+                count++;
+            }
+        }
 
         i++;
     }
 
-    /* 7. Terminer va_list */
     va_end(args);
-
-    /* 8. Retourner le nombre de caractères affichés */
     return (count);
 }
+
