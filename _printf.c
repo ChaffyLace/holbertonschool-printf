@@ -18,7 +18,6 @@ int _printf(const char *format, ...)
     /* 2. Initialiser va_list */
     va_start(args, format);
 
-    /* 3. Parcourir format */
     while (format[i] != '\0')
     {
         if(format[i] != '%')
@@ -36,30 +35,31 @@ int _printf(const char *format, ...)
     			char c = va_arg(args, int);
     			write(1, &c, 1);
     			count++;
-		}
 
 		}
 		else if (format[i] == 's')
-		{ 
-			char *s = va_arg(args, char  	*);
-			write(1, &s, 1);
-			count++;
-
+		{
+			char *s = va_arg(args, char *);
+			if (s == NULL)
+				s = "(null)";
+			int j = 0;
+			while (s[j] != '\0')
+			{
+				write(1, &s[j], 1);
+				count++;
+				j++;
+			}
 		}
 		else if(format[i] == '%')
 		{
-
+			write(1, "%", 1);
+			count++;
 		}
-
-
-        /* 6. Mettre à jour count */
 
         i++;
     }
 
-    /* 7. Terminer va_list */
     va_end(args);
 
-    /* 8. Retourner le nombre de caractères affichés */
     return (count);
 }
