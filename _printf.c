@@ -5,7 +5,7 @@
  * _printf - produces output according to a format
  * @format: format string containing characters and format specifiers
  *
- * Return: number of characters printed
+ * Return: number of characters printed, or -1 if format is NULL
  */
 int _printf(const char *format, ...)
 {
@@ -25,6 +25,11 @@ int _printf(const char *format, ...)
         if (format[i] == '%')
         {
             i++;
+            if (format[i] == '\0')
+            {
+                va_end(args);
+                return -1;
+            }
             if (format[i] == 'c')
                 count += print_char(args);
             else if (format[i] == 's')
