@@ -1,27 +1,26 @@
+#include <stdarg.h>
 #include "main.h"
 
 /**
  * print_string - prints a string
- * @args: list of arguments
+ * @args: list of arguments containing the string to print
  *
  * Return: number of characters printed
  */
 int print_string(va_list args)
 {
-	char *s = va_arg(args, char *);
-	int count = 0;
-	int i = 0;
+    char *s;
+    int i;
+    s = va_arg(args, char *);
 
-	//ses deux ligne evite un plantage et affiche nul comme le vrai print
 	if (s == NULL)
-		s = "(null)";
-	//cette ligne serre a parcourir la chaine de caractere usqua que on atteigne la fin
-	while s[i] != '\0')
-	{
-		write(1, &s[i], 1);
-		count++;
-		i++;
-	}
+        s = "(null)";
 
-	return (count);
+	i = 0;
+    while (s[i] != '\0')
+    {
+        _putchar(s[i]);
+        i++;
+    }
+	return i;
 }
