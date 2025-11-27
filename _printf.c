@@ -25,17 +25,25 @@ int _printf(const char *format, ...)
         if (format[i] == '%')
         {
             i++;
+
             if (format[i] == '\0')
             {
                 va_end(args);
                 return -1;
             }
+
             if (format[i] == 'c')
                 count += print_char(args);
+
             else if (format[i] == 's')
                 count += print_string(args);
+
+            else if (format[i] == 'd' || format[i] == 'i')
+                count += print_int(va_arg(args, int));
+
             else if (format[i] == '%')
                 count += _putchar('%');
+
             else
             {
                 count += _putchar('%');
