@@ -1,0 +1,42 @@
+.TH _PRINTF 3 "Custom Library"
+.SH NAME
+_printf \- custom formatted output function
+
+.SH SYNOPSIS
+.B #include "main.h"
+.PP
+.B int _printf(const char *format, ...);
+
+.SH DESCRIPTION
+_printf() prints output to the standard output according to the format string.
+It supports the following conversion specifiers:
+
+.TP
+%c
+Prints a single character.
+
+.TP
+%s
+Prints a string.
+
+.TP
+%d, %i
+Prints a signed decimal integer.
+
+.TP
+%%
+Prints a literal percent sign.
+
+Unsupported specifiers are printed as "%x" (percent followed by the character).
+
+.SH RETURN VALUE
+Returns the number of characters printed.
+Returns -1 if format is NULL or format ends with a single '%'.
+
+.SH EXAMPLE
+.EX
+_printf("Hello %s, number: %d%%\\n", "World", 42);
+.EE
+
+.SH SEE ALSO
+printf(3)
