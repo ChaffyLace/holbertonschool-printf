@@ -57,6 +57,7 @@ int main(void)
 Hello World!
 Char: A, Number: 42%
 ```
+<img width="642" height="732" alt="d final" src="https://github.com/user-attachments/assets/9eb2aa23-0558-40bf-92f7-6f15d8f78f46" />
 
 ---
 
